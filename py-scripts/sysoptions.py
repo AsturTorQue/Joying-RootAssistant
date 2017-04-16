@@ -57,6 +57,7 @@ def MENU(glob_vars):
 
 
 def ROOT_IT(glob_vars):
+	RESOURCES = os.path.join(glob_vars['BASE_DIR'], "SuperSU_for_Joying_Intel","resources")
 	# Make the partitions read-writable
 	jrfunctions.ext_cmd(glob_vars['adb'] + ' shell mount -o rw,remount /system')
 	jrfunctions.ext_cmd(glob_vars['adb'] + ' shell mount -o rw,remount /system /system')
@@ -68,14 +69,14 @@ def ROOT_IT(glob_vars):
 	jrfunctions.ext_cmd(glob_vars['adb'] + ' shell "mkdir /tmp/supersu"')
 
 	# Do the copying
-	#print("\n$FILEPATH\n\n"
-	jrfunctions.ext_cmd(glob_vars['adb'] + ' push $FILEPATH/chattr.pie /tmp/supersu/')
-	jrfunctions.ext_cmd(glob_vars['adb'] + ' push $FILEPATH/install.sh /tmp/supersu/')
-	jrfunctions.ext_cmd(glob_vars['adb'] + ' push $FILEPATH/install-recovery.sh /tmp/supersu/')
-	jrfunctions.ext_cmd(glob_vars['adb'] + ' push $FILEPATH/libsupol.so /tmp/supersu/')
-	jrfunctions.ext_cmd(glob_vars['adb'] + ' push $FILEPATH/su.pie /tmp/supersu/')
-	jrfunctions.ext_cmd(glob_vars['adb'] + ' push $FILEPATH/Superuser.apk /tmp/supersu/')
-	jrfunctions.ext_cmd(glob_vars['adb'] + ' push $FILEPATH/supolicy /tmp/supersu/')
+	#print("\n' + RESOURCES + '\n\n"
+	jrfunctions.ext_cmd(glob_vars['adb'] + ' push ' + os.path.join(RESOURCES, "chattr.pie") + ' /tmp/supersu/')
+	jrfunctions.ext_cmd(glob_vars['adb'] + ' push ' + os.path.join(RESOURCES, "install.sh") + ' /tmp/supersu/')
+	jrfunctions.ext_cmd(glob_vars['adb'] + ' push ' + os.path.join(RESOURCES, "install-recovery.sh") + ' /tmp/supersu/')
+	jrfunctions.ext_cmd(glob_vars['adb'] + ' push ' + os.path.join(RESOURCES, "libsupol.so") + ' /tmp/supersu/')
+	jrfunctions.ext_cmd(glob_vars['adb'] + ' push ' + os.path.join(RESOURCES, "su.pie") + ' /tmp/supersu/')
+	jrfunctions.ext_cmd(glob_vars['adb'] + ' push ' + os.path.join(RESOURCES, "Superuser.apk") + ' /tmp/supersu/')
+	jrfunctions.ext_cmd(glob_vars['adb'] + ' push ' + os.path.join(RESOURCES, "supolicy") + ' /tmp/supersu/')
 
 	# Do the actual installation
 	jrfunctions.ext_cmd(glob_vars['adb'] + ' shell chmod 0755 /tmp/supersu/install.sh')

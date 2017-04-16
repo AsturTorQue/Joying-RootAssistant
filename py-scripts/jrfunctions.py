@@ -33,7 +33,7 @@ def ext_cmd(cmd):
 	print(output)
 	conn_errors = ["unable to connect to ", "device offline"] 
 	#if ("unable to connect to ") | ("device offline")  in output:
-	if any(conn_error in conn_errors for conn_error in conn_errors):
+	if any(conn_error in output for conn_error in conn_errors):
 		clr_scr()
 		#ext_cmd(glob_vars['adb'] + ' kill-server ')
 		print("\n\n          !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
@@ -66,12 +66,12 @@ def push_BUSYBOX(glob_vars):
 	clr_scr() 
 	print("\n\n    Updating your busybox.\n\n")
 	#time.sleep(5)
-	ext_cmd(glob_vars['adb'] + ' push WORKINGDIR/resources/busybox /sdcard/')
+	ext_cmd(glob_vars['adb'] + ' push ' + os.path.join(glob_vars['BASE_DIR'], "busybox-X86", "busybox") + ' /sdcard/')
 	ext_cmd(glob_vars['adb'] + ' shell "su -c mount -o remount,rw /system"')
 	ext_cmd(glob_vars['adb'] + ' shell "su -c cp /system/bin/busybox /system/bin/busybox.org"')
 	ext_cmd(glob_vars['adb'] + ' shell "su -c cp /sdcard/busybox /system/bin/busybox"')
 	ext_cmd(glob_vars['adb'] + ' shell "su -c chmod 0755 /system/bin/busybox"')
 	ext_cmd(glob_vars['adb'] + ' shell "su -c mount -o remount,ro /system"')
 	ext_cmd(glob_vars['adb'] + ' shell "su -c ls -l /system/bin/busy*"')
-	input_cmd("\n\nPress any key to return to main menu\n\n")
+	input_cmd("\n\nPress enter to return to main menu\n\n")
 		
