@@ -73,6 +73,7 @@ def INSTALL_MOD(glob_vars, SELECTED_MOD):
 	RADIO_MOD = os.path.join(glob_vars['BASE_DIR'], "Radio-Mod", SELECTED_MOD, "JY-1-C9-Radio-V1.0.apk")
 	#print(RADIO_MOD
 	#time.sleep(5)
+	print("\n\n    Pushing the " + SELECTED_MOD + " version to your head unit\n\n")
 	jrfunctions.ext_cmd(glob_vars['adb'] + ' push ' + RADIO_MOD + ' /sdcard/')
 	jrfunctions.ext_cmd(glob_vars['adb'] + ' shell "su -c am force-stop com.syu.radio"')
 	jrfunctions.ext_cmd(glob_vars['adb'] + ' shell "su -c mount -o remount,rw /system"')

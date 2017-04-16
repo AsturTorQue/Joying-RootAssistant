@@ -137,12 +137,14 @@ def  CLOSE_TOOL():
 	print("   " + glob_vars['PROGRAM_NAME'])
 	print( 87 * "=")
 	#adb kill-server
-	print("\n\n             The adb server has been stopped.\n\n")
-	print("     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-	print("     !!!!!                                    !!!!!")
-	print("     !!!!!    REBOOT YOUR JOYING HEAD UNIT    !!!!!")
-	print("     !!!!!                                    !!!!!")
-	print("     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n")
+	print("\n\n                  The adb server has been stopped.\n\n")
+	print("          !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+	print("          !!!!!                                    !!!!!")
+	print("          !!!!!    REBOOT YOUR JOYING HEAD UNIT    !!!!!")
+	print("          !!!!!                                    !!!!!")
+	print("          !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n")
+	print(87 * "=")
+	print("\n\n")
 	sys.exit()
 ###################################################
 ###################################################
