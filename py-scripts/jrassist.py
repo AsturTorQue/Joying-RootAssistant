@@ -50,7 +50,7 @@ glob_vars['MAINSCRIPT'] = "YES"
 def JRASSIST_ACCEPT():
 	# set window title specific to this section
 	title = glob_vars['PROGRAM_NAME'] + " disclaimer"
-	print(chr(27) + "[2J")
+	jrfunctions.clr_scr()
 	#print(our default header
 	print("  READ ME:")
 #	print(40 * "=" , "MENU" , 40 * "="
@@ -89,7 +89,7 @@ def OPTION_SELECTION():
 	# set window title specific to this section
 	title = glob_vars['PROGRAM_NAME']
 	#print(our default header
-	print(chr(27) + "[2J")
+	jrfunctions.clr_scr()
 #	print(40 * "=" , "MENU" , 40 * "="
 	print(87 * "=")
 	print("  " + glob_vars['PROGRAM_NAME'])
@@ -131,7 +131,7 @@ def OPTION_SELECTION():
 		OPTION_SELECTION()
 ###################################################
 def  CLOSE_TOOL():
-	print(chr(27) + "[2J")
+	jrfunctions.clr_scr()
 #	print(40 * "=" , "MENU" , 40 * "="
 	print(87 * "=")
 	print("   " + glob_vars['PROGRAM_NAME'])

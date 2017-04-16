@@ -24,18 +24,18 @@ SCRIPT_VERSION="v0.1 16 April 2017"
 SCRIPT_NAME="Joying rooting subscript, version " + SCRIPT_VERSION
 
 def init(glob_vars):
-	print(chr(27) + "[2J")
+	jrfunctions.clr_scr()
 	if glob_vars['MAINSCRIPT'] == "YES":
 		MENU(glob_vars)
 	else:
-		print(chr(27) + "[2J")
+		jrfunctions.clr_scr()
 		print("\n\nThis script can only be called from the main jrassist.bat or jrassist.sh script\n\n")
 		jrfunctions.input_cmd("Press enter to exit this script\n\n")
 		sys.exit()
 
 
 def MENU(glob_vars):
-	print(chr(27) + "[2J")
+	jrfunctions.clr_scr()
 	print(87 * "=")
 	print("  " + glob_vars['PROGRAM_NAME'])
 	print("  " + SCRIPT_NAME)

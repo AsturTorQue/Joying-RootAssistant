@@ -18,6 +18,14 @@
 
 import os, platform, sys, subprocess
 
+def clr_scr():
+	OSplatform = platform.system()
+	if (OSplatform == "Windows") | (OSplatform == "nt"):
+		os.system('cls')
+	else:
+		os.system('clear')
+
+
 def ext_cmd(cmd):
 	process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
 	(output, err) = process.communicate()
@@ -36,7 +44,7 @@ def input_cmd(Message):
 	return choice
 
 def push_BUSYBOX(glob_vars):
-	print(chr(27) + "[2J") 
+	clr_scr() 
 	print("\n\n    Updating your busybox.\n\n")
 	#time.sleep(5)
 	ext_cmd(glob_vars['adb'] + ' push WORKINGDIR/resources/busybox /sdcard/')
