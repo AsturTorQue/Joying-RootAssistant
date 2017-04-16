@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# jrfunctions.py - This python "helper" script deals with the several Sofiaserver.apk options
+# py - This python "helper" script deals with the several Sofiaserver.apk options
 
 # Copyright (c) 2017 Harry van der Wolf. All rights reserved.
 
@@ -16,19 +16,35 @@
 # This file is part of jrassist.
 
 
-import os, sys, subprocess
+import os, platform, sys, subprocess
 
 def ext_cmd(cmd):
 	process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
 	(output, err) = process.communicate()
 	process.wait()
 	print output
+	#if (err != "") | (err != "None") | (err != None):
+	#	print err
 
-def pause_cmd():
-	# very dirty method, but works always
-	try:
-		os.system('pause')  #windows, doesn't require enter
-	except whatever_it_is:
-		os.system('read -n 1 -s -p "Press any key to continue"') #linux, *bsd, mac OS/X
+def input_cmd(Message):
+	# raw_input has been changed to input in python > 3
+	if sys.version_info<(3,0,0):
+		choice = raw_input(Message)
+	else:
+		choice = input(Message)
 
+	return choice
 
+def push_BUSYBOX(glob_vars):
+	print(chr(27) + "[2J") 
+	print("\n\n    Updating your busybox.\n\n")
+	#time.sleep(5)
+	ext_cmd(glob_vars['adb'] + ' push WORKINGDIR/resources/busybox /sdcard/')
+	ext_cmd(glob_vars['adb'] + ' shell "su -c mount -o remount,rw /system"')
+	ext_cmd(glob_vars['adb'] + ' shell "su -c cp /system/bin/busybox /system/bin/busybox.org"')
+	ext_cmd(glob_vars['adb'] + ' shell "su -c cp /sdcard/busybox /system/bin/busybox"')
+	ext_cmd(glob_vars['adb'] + ' shell "su -c chmod 0755 /system/bin/busybox"')
+	ext_cmd(glob_vars['adb'] + ' shell "su -c mount -o remount,ro /system"')
+	ext_cmd(glob_vars['adb'] + ' shell "su -c ls -l /system/bin/busy*"')
+	input_cmd("\n\nPress any key to return to main menu\n\n")
+		

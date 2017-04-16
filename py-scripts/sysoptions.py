@@ -15,12 +15,13 @@
 
 # This file is part of jrassist.
 
-import os, sys, subprocess
+import os, platform, sys, subprocess
+import jrfunctions
 
 #glob_vars['PROGRAM_NAME']
 
 SCRIPT_VERSION="v0.1 16 April 2017"
-SCRIPT_NAME="Joying root the unit subscript, version " + SCRIPT_VERSION
+SCRIPT_NAME="Joying rooting subscript, version " + SCRIPT_VERSION
 
 def init(glob_vars):
 	print(chr(27) + "[2J")
@@ -28,8 +29,8 @@ def init(glob_vars):
 		MENU(glob_vars)
 	else:
 		print(chr(27) + "[2J")
-		print "\n\nThis script can only be called from the main jrassist.sh script\n\n"
-		pause_cmd
+		print "\n\nThis script can only be called from the main jrassist.bat or jrassist.sh script\n\n"
+		jrfunctions.input_cmd("Press enter to exit this script")
 		print "\n\n"
 		sys.exit()
 
@@ -45,7 +46,7 @@ def MENU(glob_vars):
 	print "\n   1 . Root my unit with SuperSU 2.79 SR3"
 	print "\n   2 . Do nothing and exit this subscript."
 	print 87 * "="
-	choice = raw_input("")
+	choice = jrfunctions.input_cmd("")
 	### Convert string to int type ##
 	choice = int(choice)
 	if choice == 1:
@@ -58,35 +59,35 @@ def MENU(glob_vars):
 
 def ROOT_IT(glob_vars):
 	# Make the partitions read-writable
-	self.ext_cmd(glob_vars['adb'] + ' shell mount -o rw,remount /system')
-	self.ext_cmd(glob_vars['adb'] + ' shell mount -o rw,remount /system /system')
-	self.ext_cmd(glob_vars['adb'] + ' shell mount -o rw,remount /')
-	self.ext_cmd(glob_vars['adb'] + ' shell mount -o rw,remount / /')
+	jrfunctions.ext_cmd(glob_vars['adb'] + ' shell mount -o rw,remount /system')
+	jrfunctions.ext_cmd(glob_vars['adb'] + ' shell mount -o rw,remount /system /system')
+	jrfunctions.ext_cmd(glob_vars['adb'] + ' shell mount -o rw,remount /')
+	jrfunctions.ext_cmd(glob_vars['adb'] + ' shell mount -o rw,remount / /')
 
 	# Make some temporary folders
-	self.ext_cmd(glob_vars['adb'] + ' shell "mkdir /tmp"')
-	self.ext_cmd(glob_vars['adb'] + ' shell "mkdir /tmp/supersu"')
+	jrfunctions.ext_cmd(glob_vars['adb'] + ' shell "mkdir /tmp"')
+	jrfunctions.ext_cmd(glob_vars['adb'] + ' shell "mkdir /tmp/supersu"')
 
 	# Do the copying
 	#print "\n$FILEPATH\n\n"
-	self.ext_cmd(glob_vars['adb'] + ' push $FILEPATH/chattr.pie /tmp/supersu/')
-	self.ext_cmd(glob_vars['adb'] + ' push $FILEPATH/install.sh /tmp/supersu/')
-	self.ext_cmd(glob_vars['adb'] + ' push $FILEPATH/install-recovery.sh /tmp/supersu/')
-	self.ext_cmd(glob_vars['adb'] + ' push $FILEPATH/libsupol.so /tmp/supersu/')
-	self.ext_cmd(glob_vars['adb'] + ' push $FILEPATH/su.pie /tmp/supersu/')
-	self.ext_cmd(glob_vars['adb'] + ' push $FILEPATH/Superuser.apk /tmp/supersu/')
-	self.ext_cmd(glob_vars['adb'] + ' push $FILEPATH/supolicy /tmp/supersu/')
+	jrfunctions.ext_cmd(glob_vars['adb'] + ' push $FILEPATH/chattr.pie /tmp/supersu/')
+	jrfunctions.ext_cmd(glob_vars['adb'] + ' push $FILEPATH/install.sh /tmp/supersu/')
+	jrfunctions.ext_cmd(glob_vars['adb'] + ' push $FILEPATH/install-recovery.sh /tmp/supersu/')
+	jrfunctions.ext_cmd(glob_vars['adb'] + ' push $FILEPATH/libsupol.so /tmp/supersu/')
+	jrfunctions.ext_cmd(glob_vars['adb'] + ' push $FILEPATH/su.pie /tmp/supersu/')
+	jrfunctions.ext_cmd(glob_vars['adb'] + ' push $FILEPATH/Superuser.apk /tmp/supersu/')
+	jrfunctions.ext_cmd(glob_vars['adb'] + ' push $FILEPATH/supolicy /tmp/supersu/')
 
 	# Do the actual installation
-	self.ext_cmd(glob_vars['adb'] + ' shell chmod 0755 /tmp/supersu/install.sh')
-	self.ext_cmd(glob_vars['adb'] + ' shell "cd /tmp/supersu/ && sh install.sh"')
+	jrfunctions.ext_cmd(glob_vars['adb'] + ' shell chmod 0755 /tmp/supersu/install.sh')
+	jrfunctions.ext_cmd(glob_vars['adb'] + ' shell "cd /tmp/supersu/ && sh install.sh"')
 
 	# Clean up
-	self.ext_cmd(glob_vars['adb'] + ' shell rm -rf /tmp/supersu')
-	self.ext_cmd(glob_vars['adb'] + ' shell mount -o ro,remount /system')
-	self.ext_cmd(glob_vars['adb'] + ' shell mount -o ro,remount /')
+	jrfunctions.ext_cmd(glob_vars['adb'] + ' shell rm -rf /tmp/supersu')
+	jrfunctions.ext_cmd(glob_vars['adb'] + ' shell mount -o ro,remount /system')
+	jrfunctions.ext_cmd(glob_vars['adb'] + ' shell mount -o ro,remount /')
 	#read -n 1 -s -p "Press any key to exit this script and return to the main script"
-	pause_cmd()
+	jrfunctions.input_cmd("\n\nPress enter to exit this script and return to the main script\n\n")
 
 
 

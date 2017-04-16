@@ -57,21 +57,20 @@ def JRASSIST_ACCEPT():
 	print 87 * "="
 	print "  " + glob_vars['PROGRAM_NAME']
 	print "\n  standard disclaimer:"
-	print "               !! WITH GREAT POWER COMES GREAT RESPONSIBILITY. !!\n"
-	print "                   by proceeding you accept that this"
-	print "                   script is carried out at your own risk"
-	print "                   and you will not hold anyone else"
-	print "                   but yourself responsible.\n"
-	print "               !! WITH GREAT POWER COMES GREAT RESPONSIBILITY. !!"
+	print "               WITH GREAT POWER COMES GREAT RESPONSIBILITY.\n"
+	print "                 by proceeding you accept that this"
+	print "                 script is carried out at your own risk"
+	print "                 and you will not hold anyone else"
+	print "                 but yourself responsible.\n"
+	print "               WITH GREAT POWER COMES GREAT RESPONSIBILITY."
 	print '\n\n  . type " accept " without quotes to continue . . .'
 	print "\n  . any other input will cancel and close this window\n" 
 	print 87 * "="
-	#loop = True
-	#while loop:
-	#JRASSIST_ACCEPT_MENU()
-	choice = raw_input("\n\nWhat's it gonna be boy? What's it gonna be?\n\n")
+	#choice = raw_input("\n\nWhat's it gonna be boy? What's it gonna be?\n                                (Meatloaf, Paradise by the dashboard light, 1977)\n\n")
+	choice = jrfunctions.input_cmd("\n")
 	# the only accepted answer to continue
 	if choice == "accept":
+		jrfunctions.ext_cmd(glob_vars['adb'] + ' kill-server ')
 		jrfunctions.ext_cmd(glob_vars['adb'] + ' connect ' + IP_ADDRESS)
 		jrfunctions.ext_cmd(glob_vars['adb'] + ' root')
 		jrfunctions.ext_cmd(glob_vars['adb'] + ' connect ' + IP_ADDRESS)
@@ -96,7 +95,7 @@ def OPTION_SELECTION():
 	print "  " + glob_vars['PROGRAM_NAME']
 	print 87 * "="
 	print "  Select an Option (1-7) :" 
-	print "\n   1 . Root, add SElinux policies and the SuperSU apk (version 2.79 SR3"
+	print "\n   1 . Root, add SElinux policies and the SuperSU apk (version 2.79 SR3)"
 	print "\n\n   2 . Install one of the NoKill/Steering-wheel-mod Sofia-1-C9-Server-V1.0.apk"
 	print "\n\n   3 . Install modified stock bluetooth app to allow connection to all devices"
 	print "\n\n   4 . Install one of the modified Radio apps"
@@ -105,7 +104,7 @@ def OPTION_SELECTION():
 	print "\n\n   7 . Exit this script"
 	print 87 * "="
 
-	choice = raw_input('Enter your choice [1-7] : ')
+	choice = jrfunctions.input_cmd('Enter your choice [1-7] : ')
 	### Convert string to int type ##
 	choice = int(choice)
 	if choice == 1:
@@ -115,36 +114,22 @@ def OPTION_SELECTION():
 		sofiaserver.init(glob_vars)
 		OPTION_SELECTION()
 	elif choice == 3:
-		bt_selection()
+		bt_selection(glob_vars)
 		OPTION_SELECTION()
 	elif choice == 4:
-		radio_mods.menu()
+		radio_mods.init(glob_vars)
 		OPTION_SELECTION()
 	elif choice == 5:
-		tweaks.menu()
+		tweaks.menu(glob_vars)
 		OPTION_SELECTION()
 	elif choice == 6:
-		push_BUSYBOX(glob_vars)
+		jrfunctions.push_BUSYBOX(glob_vars)
 		OPTION_SELECTION()
 	elif choice == 7:
 		CLOSE_TOOL()
 	else:
 		OPTION_SELECTION()
 ###################################################
-def push_BUSYBOX(glob_vars):
-	print(chr(27) + "[2J") 
-	print("\n\n    Updating your busybox.\n\n")
-	time.sleep(5)
-	ext_cmd(glob_vars['adb'] + 'push WORKINGDIR/resources/busybox /sdcard/')
-	ext_cmd(glob_vars['adb'] + 'shell "su -c mount -o remount,rw /system"')
-	ext_cmd(glob_vars['adb'] + 'shell "su -c cp /system/bin/busybox /system/bin/busybox.org"')
-	ext_cmd(glob_vars['adb'] + 'shell "su -c cp /sdcard/busybox /system/bin/busybox"')
-	ext_cmd(glob_vars['adb'] + 'shell "su -c chmod 0755 /system/bin/busybox"')
-	ext_cmd(glob_vars['adb'] + 'shell "su -c mount -o remount,ro /system"')
-	ext_cmd(glob_vars['adb'] + 'shell "su -c ls -l /system/bin/busy*"')
-	jrfunctions.pause_cmd()
-	OPTION_SELECTION		
-
 def  CLOSE_TOOL():
 	print(chr(27) + "[2J")
 #	print 40 * "=" , "MENU" , 40 * "="
