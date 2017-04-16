@@ -33,25 +33,24 @@ def init(glob_vars):
 		MENU(glob_vars)
 	else:
 		print(chr(27) + "[2J")
-		print "\n\nThis script can only be called from the main jrassist.bat or jrassist.sh script\n\n"
-		jrfunctions.input_cmd("Press enter to exit")
-		print "\n\n"
+		print("\n\nThis script can only be called from the main jrassist.bat or jrassist.sh script\n\n")
+		jrfunctions.input_cmd("Press enter to exit\n\n")
 		sys.exit()
 
 
 def MENU(glob_vars):
 	print(chr(27) + "[2J")
-	print 87 * "="
-	print "  " + glob_vars['PROGRAM_NAME']
-	print "  " + SCRIPT_NAME
-	print 87 * "="
-	print "  Select an Option :" 
-	print "\n   1 . Install the BLUE_WHITE version"
-	print "\n\n   2 . Install the RED_WHITE version"
-	print "\n\n   3 . Install the RED version"
-	print "\n\n   4 . Install the ORANGE version"
-	print "\n\n   5 . Exit this radio mods subscript"
-	print 87 * "="
+	print(87 * "=")
+	print("  " + glob_vars['PROGRAM_NAME'])
+	print("  " + SCRIPT_NAME)
+	print(87 * "=")
+	print("  Select an Option :")
+	print("\n   1 . Install the BLUE_WHITE version")
+	print("\n\n   2 . Install the RED_WHITE version")
+	print("\n\n   3 . Install the RED version")
+	print("\n\n   4 . Install the ORANGE version")
+	print("\n\n   5 . Exit this radio mods subscript")
+	print(87 * "=")
 	choice = jrfunctions.input_cmd("")
 	### Convert string to int type ##
 	choice = int(choice)
@@ -72,7 +71,7 @@ def MENU(glob_vars):
 def INSTALL_MOD(glob_vars, SELECTED_MOD):
 	print(chr(27) + "[2J")
 	RADIO_MOD = os.path.join(glob_vars['BASE_DIR'], "Radio-Mod", SELECTED_MOD, "JY-1-C9-Radio-V1.0.apk")
-	#print RADIO_MOD
+	#print(RADIO_MOD
 	#time.sleep(5)
 	jrfunctions.ext_cmd(glob_vars['adb'] + ' push ' + RADIO_MOD + ' /sdcard/')
 	jrfunctions.ext_cmd(glob_vars['adb'] + ' shell "su -c am force-stop com.syu.radio"')

@@ -29,23 +29,22 @@ def init(glob_vars):
 		MENU(glob_vars)
 	else:
 		print(chr(27) + "[2J")
-		print "\n\nThis script can only be called from the main jrassist.bat or jrassist.sh script\n\n"
-		jrfunctions.input_cmd("Press enter to exit this script")
-		print "\n\n"
+		print("\n\nThis script can only be called from the main jrassist.bat or jrassist.sh script\n\n")
+		jrfunctions.input_cmd("Press enter to exit this script\n\n")
 		sys.exit()
 
 
 def MENU(glob_vars):
 	print(chr(27) + "[2J")
-	print 87 * "="
-	print "  " + glob_vars['PROGRAM_NAME']
-	print "  " + SCRIPT_NAME
-	print 87 * "="
-	print "\n   This script will root your unit in a better way and add the SuperSU superuser apk\n\n"
-	print "  Select an Option :" 
-	print "\n   1 . Root my unit with SuperSU 2.79 SR3"
-	print "\n   2 . Do nothing and exit this subscript."
-	print 87 * "="
+	print(87 * "=")
+	print("  " + glob_vars['PROGRAM_NAME'])
+	print("  " + SCRIPT_NAME)
+	print(87 * "=")
+	print("\n   This script will root your unit in a better way and add the SuperSU superuser apk\n\n")
+	print("  Select an Option :")
+	print("\n   1 . Root my unit with SuperSU 2.79 SR3")
+	print("\n   2 . Do nothing and exit this subscript.")
+	print(87 * "=")
 	choice = jrfunctions.input_cmd("")
 	### Convert string to int type ##
 	choice = int(choice)
@@ -69,7 +68,7 @@ def ROOT_IT(glob_vars):
 	jrfunctions.ext_cmd(glob_vars['adb'] + ' shell "mkdir /tmp/supersu"')
 
 	# Do the copying
-	#print "\n$FILEPATH\n\n"
+	#print("\n$FILEPATH\n\n"
 	jrfunctions.ext_cmd(glob_vars['adb'] + ' push $FILEPATH/chattr.pie /tmp/supersu/')
 	jrfunctions.ext_cmd(glob_vars['adb'] + ' push $FILEPATH/install.sh /tmp/supersu/')
 	jrfunctions.ext_cmd(glob_vars['adb'] + ' push $FILEPATH/install-recovery.sh /tmp/supersu/')

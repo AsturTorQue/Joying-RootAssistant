@@ -38,8 +38,8 @@ if (OSplatform == "Windows") | (OSplatform == "nt"):
 	glob_vars['adb'] = os.path.join(glob_vars['BASE_DIR'],"win-adb", "adb.exe")
 else:
 	glob_vars['adb'] = "adb"
-#print glob_vars['RESOURCES']
-#print glob_vars['adb']
+#print(glob_vars['RESOURCES']
+#print(glob_vars['adb']
 #import time
 #time.sleep(5)
 
@@ -51,21 +51,21 @@ def JRASSIST_ACCEPT():
 	# set window title specific to this section
 	title = glob_vars['PROGRAM_NAME'] + " disclaimer"
 	print(chr(27) + "[2J")
-	#print our default header
-	print "  READ ME:"
-#	print 40 * "=" , "MENU" , 40 * "="
-	print 87 * "="
-	print "  " + glob_vars['PROGRAM_NAME']
-	print "\n  standard disclaimer:"
-	print "               WITH GREAT POWER COMES GREAT RESPONSIBILITY.\n"
-	print "                 by proceeding you accept that this"
-	print "                 script is carried out at your own risk"
-	print "                 and you will not hold anyone else"
-	print "                 but yourself responsible.\n"
-	print "               WITH GREAT POWER COMES GREAT RESPONSIBILITY."
-	print '\n\n  . type " accept " without quotes to continue . . .'
-	print "\n  . any other input will cancel and close this window\n" 
-	print 87 * "="
+	#print(our default header
+	print("  READ ME:")
+#	print(40 * "=" , "MENU" , 40 * "="
+	print(87 * "=")
+	print("  " + glob_vars['PROGRAM_NAME'])
+	print("\n  standard disclaimer:")
+	print("               WITH GREAT POWER COMES GREAT RESPONSIBILITY.\n")
+	print("                 by proceeding you accept that this")
+	print("                 script is carried out at your own risk")
+	print("                 and you will not hold anyone else")
+	print("                 but yourself responsible.\n")
+	print("               WITH GREAT POWER COMES GREAT RESPONSIBILITY.")
+	print('\n\n  . type " accept " without quotes to continue . . .')
+	print("\n  . any other input will cancel and close this window\n") 
+	print(87 * "=")
 	#choice = raw_input("\n\nWhat's it gonna be boy? What's it gonna be?\n                                (Meatloaf, Paradise by the dashboard light, 1977)\n\n")
 	choice = jrfunctions.input_cmd("\n")
 	# the only accepted answer to continue
@@ -88,21 +88,21 @@ def OPTION_SELECTION():
 	#clear
 	# set window title specific to this section
 	title = glob_vars['PROGRAM_NAME']
-	#print our default header
-	print(chr(27) + "[2J") 
-#	print 40 * "=" , "MENU" , 40 * "="
-	print 87 * "="
-	print "  " + glob_vars['PROGRAM_NAME']
-	print 87 * "="
-	print "  Select an Option (1-7) :" 
-	print "\n   1 . Root, add SElinux policies and the SuperSU apk (version 2.79 SR3)"
-	print "\n\n   2 . Install one of the NoKill/Steering-wheel-mod Sofia-1-C9-Server-V1.0.apk"
-	print "\n\n   3 . Install modified stock bluetooth app to allow connection to all devices"
-	print "\n\n   4 . Install one of the modified Radio apps"
-	print "\n\n   5 . Alter the screen density; fake other android device, etc."
-	print "\n\n   6 . Update buggy busybox v1.22 with correct busybox v1.26-2"
-	print "\n\n   7 . Exit this script"
-	print 87 * "="
+	#print(our default header
+	print(chr(27) + "[2J")
+#	print(40 * "=" , "MENU" , 40 * "="
+	print(87 * "=")
+	print("  " + glob_vars['PROGRAM_NAME'])
+	print(87 * "=")
+	print("  Select an Option (1-7) :") 
+	print("\n   1 . Root, add SElinux policies and the SuperSU apk (version 2.79 SR3)")
+	print("\n\n   2 . Install one of the NoKill/Steering-wheel-mod Sofia-1-C9-Server-V1.0.apk")
+	print("\n\n   3 . Install modified stock bluetooth app to allow connection to all devices")
+	print("\n\n   4 . Install one of the modified Radio apps")
+	print("\n\n   5 . Alter the screen density; fake other android device, etc.")
+	print("\n\n   6 . Update buggy busybox v1.22 with correct busybox v1.26-2")
+	print("\n\n   7 . Exit this script")
+	print(87 * "=")
 
 	choice = jrfunctions.input_cmd('Enter your choice [1-7] : ')
 	### Convert string to int type ##
@@ -132,17 +132,17 @@ def OPTION_SELECTION():
 ###################################################
 def  CLOSE_TOOL():
 	print(chr(27) + "[2J")
-#	print 40 * "=" , "MENU" , 40 * "="
-	print 87 * "="
-	print "   " + glob_vars['PROGRAM_NAME']
-	print  87 * "="
+#	print(40 * "=" , "MENU" , 40 * "="
+	print(87 * "=")
+	print("   " + glob_vars['PROGRAM_NAME'])
+	print( 87 * "=")
 	#adb kill-server
-	print "\n\n             The adb server has been stopped.\n\n"
-	print "     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-	print "     !!!!!                                    !!!!!"
-	print "     !!!!!    REBOOT YOUR JOYING HEAD UNIT    !!!!!"
-	print "     !!!!!                                    !!!!!"
-	print "     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n"
+	print("\n\n             The adb server has been stopped.\n\n")
+	print("     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+	print("     !!!!!                                    !!!!!")
+	print("     !!!!!    REBOOT YOUR JOYING HEAD UNIT    !!!!!")
+	print("     !!!!!                                    !!!!!")
+	print("     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n")
 	sys.exit()
 ###################################################
 ###################################################

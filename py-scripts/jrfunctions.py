@@ -22,9 +22,9 @@ def ext_cmd(cmd):
 	process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
 	(output, err) = process.communicate()
 	process.wait()
-	print output
+	print(output)
 	#if (err != "") | (err != "None") | (err != None):
-	#	print err
+	#	print(err)
 
 def input_cmd(Message):
 	# raw_input has been changed to input in python > 3
