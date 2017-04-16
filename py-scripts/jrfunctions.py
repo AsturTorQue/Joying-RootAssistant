@@ -31,6 +31,25 @@ def ext_cmd(cmd):
 	(output, err) = process.communicate()
 	process.wait()
 	print(output)
+	conn_errors = ["unable to connect to ", "device offline"] 
+	#if ("unable to connect to ") | ("device offline")  in output:
+	if any(conn_error in conn_errors for conn_error in conn_errors):
+		clr_scr()
+		#ext_cmd(glob_vars['adb'] + ' kill-server ')
+		print("\n\n          !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+		print("          !!!!!                                                         !!!!!")
+		print("          !!!!!      I CAN NOT CONNECT TO YOUR JOYING HEAD UNIT         !!!!!")
+		print("          !!!!!                                                         !!!!!")
+		print("          !!!!!       - Do you have the correct ip-address?             !!!!!")
+		print("          !!!!!       - Are you on the same network?                    !!!!!")
+		print("          !!!!!       - Can you ping your unit?                         !!!!!")
+		print("          !!!!!       - After sleep mode WiFi can be unstable.          !!!!!")
+		print("          !!!!!         Reboot your unit in that case!                  !!!!!")
+		print("          !!!!!                                                         !!!!!")
+		print("          !!!!!                                                         !!!!!")
+		print("          !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n")
+		sys.exit()
+
 	#if (err != "") | (err != "None") | (err != None):
 	#	print(err)
 

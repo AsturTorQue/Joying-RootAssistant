@@ -18,6 +18,6 @@ if "%1"=="" (
 	GOTO END
 )
 
-WINDOWS\jrassist.exe %1
+WIN-EXE\jrassist.exe %1
 
 :END
