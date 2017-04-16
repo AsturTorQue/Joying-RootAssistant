@@ -111,7 +111,8 @@ def OPTION_SELECTION():
 		sysoptions.init(glob_vars)
 		OPTION_SELECTION()
 	elif choice == 2:
-		sofiaserver.init(glob_vars)
+		#sofiaserver.init(glob_vars)
+		NOT_IMPLEMENTED_YET()
 		OPTION_SELECTION()
 	elif choice == 3:
 		bt_selection(glob_vars)
@@ -146,6 +147,16 @@ def  CLOSE_TOOL():
 	print(87 * "=")
 	print("\n\n")
 	sys.exit()
+
+def NOT_IMPLEMENTED_YET():
+	jrfunctions.clr_scr()
+	print("\n\n          !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+	print("          !!!!!                                    !!!!!")
+	print("          !!!!!        Not implemented yet         !!!!!")
+	print("          !!!!!                                    !!!!!")
+	print("          !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n")
+	jrfunctions.input_cmd("Press enter to return to the main menu\n\n")
+
 ###################################################
 ###################################################
 # Set terminal size

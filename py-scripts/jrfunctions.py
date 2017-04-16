@@ -31,8 +31,10 @@ def ext_cmd(cmd):
 	(output, err) = process.communicate()
 	process.wait()
 	print(output)
+	# real connection errors
 	conn_errors = ["unable to connect to ", "device offline"] 
-	#if ("unable to connect to ") | ("device offline")  in output:
+	# fake testrun errors
+	#conn_errors = ["pipo ", "mamaloe"] 
 	if any(conn_error in output for conn_error in conn_errors):
 		clr_scr()
 		#ext_cmd(glob_vars['adb'] + ' kill-server ')

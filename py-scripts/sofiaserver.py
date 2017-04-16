@@ -14,3 +14,27 @@
 # the GNU General Public Licence for more details.
 
 # This file is part of jrassist.
+
+
+import os, platform, sys, subprocess, time
+import jrfunctions
+
+###################################################
+# Variables for this script
+SCRIPT_VERSION="v0.1 16 April 2017"
+SCRIPT_NAME="Joying SofiaServer Mods subscript, version " + SCRIPT_VERSION
+
+###################################################
+###################################################
+
+def init(glob_vars):
+	jrfunctions.clr_scr()
+	if glob_vars['MAINSCRIPT'] == "YES":
+		MENU(glob_vars)
+	else:
+		jrfunctions.clr_scr()
+		print("\n\nThis script can only be called from the main jrassist.bat or jrassist.sh script\n\n")
+		jrfunctions.input_cmd("Press enter to exit\n\n")
+		sys.exit()
+
+
