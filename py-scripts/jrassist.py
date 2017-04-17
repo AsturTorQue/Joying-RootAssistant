@@ -11,7 +11,7 @@ import sysoptions # Script for the rooting and so on
 import sofiaserver # Script for the SofiaServer mods
 import radio_mods # Script for the radio_mods
 import bluetooth # Script for the several bluetooth mods
-
+import credits # Contains the credits for all the persons who contributed
 
 if sys.version_info<(3,0,0):
 	# Fall back to Python 2's urllib2
@@ -102,10 +102,11 @@ def OPTION_SELECTION():
 	print("\n\n   4 . Install one of the modified Radio apps")
 	print("\n\n   5 . Alter the screen density; fake other android device, etc.")
 	print("\n\n   6 . Update buggy busybox v1.22 with correct busybox v1.26-2")
-	print("\n\n   7 . Exit this script")
+	print("\n\n   7 . CREDITS: Who contributed all to these mods.")
+	print("\n\n   8 . Exit this script")
 	print(87 * "=")
 
-	choice = jrfunctions.input_cmd('Enter your choice [1-7] : ')
+	choice = jrfunctions.input_cmd('Enter your choice [1-8] : ')
 	### Convert string to int type ##
 	choice = int(choice)
 	if choice == 1:
@@ -129,6 +130,11 @@ def OPTION_SELECTION():
 		jrfunctions.push_BUSYBOX(glob_vars)
 		OPTION_SELECTION()
 	elif choice == 7:
+		jrfunctions.clr_scr()
+		print(credits.CREDITS)
+		jrfunctions.input_cmd("\n\nPress enter to return to the main menu\n\n")
+		OPTION_SELECTION()
+	elif choice == 8:
 		CLOSE_TOOL()
 	else:
 		OPTION_SELECTION()
@@ -165,7 +171,10 @@ def NOT_IMPLEMENTED_YET():
 ###################################################
 # This is the "main" part
 # Set terminal size
-sys.stdout.write("\x1b[8;{rows};{cols}t".format(rows=32, cols=100))
+if (OSplatform == "Windows") | (OSplatform == "nt"):
+	os.system("mode con:cols=100 lines=32")
+else:
+	sys.stdout.write("\x1b[8;{rows};{cols}t".format(rows=32, cols=100))
 
 #check for ip-address
 if len(sys.argv) < 2:
