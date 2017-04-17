@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# radio_mods.py - This python "helper" script deals with the several Sofiaserver.apk options
+# radio_mods.py - This python "helper" script deals with the several Radio mods
 
 # Copyright (c) 2017 Harry van der Wolf. All rights reserved.
 

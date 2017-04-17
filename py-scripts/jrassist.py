@@ -10,6 +10,7 @@ import jrfunctions # General functions and tweaks
 import sysoptions # Script for the rooting and so on
 import sofiaserver # Script for the SofiaServer mods
 import radio_mods # Script for the radio_mods
+import bluetooth # Script for the several bluetooth mods
 
 
 if sys.version_info<(3,0,0):
@@ -97,7 +98,7 @@ def OPTION_SELECTION():
 	print("  Select an Option (1-7) :") 
 	print("\n   1 . Root, add SElinux policies and the SuperSU apk (version 2.79 SR3)")
 	print("\n\n   2 . Install one of the NoKill/Steering-wheel-mod Sofia-1-C9-Server-V1.0.apk")
-	print("\n\n   3 . Install modified stock bluetooth app to allow connection to all devices")
+	print("\n\n   3 . Install Bluetooth mods and helper apps")
 	print("\n\n   4 . Install one of the modified Radio apps")
 	print("\n\n   5 . Alter the screen density; fake other android device, etc.")
 	print("\n\n   6 . Update buggy busybox v1.22 with correct busybox v1.26-2")
@@ -111,17 +112,18 @@ def OPTION_SELECTION():
 		sysoptions.init(glob_vars)
 		OPTION_SELECTION()
 	elif choice == 2:
-		#sofiaserver.init(glob_vars)
-		NOT_IMPLEMENTED_YET()
+		sofiaserver.init(glob_vars)
+		#NOT_IMPLEMENTED_YET()
 		OPTION_SELECTION()
 	elif choice == 3:
-		bt_selection(glob_vars)
+		bluetooth.init(glob_vars)
 		OPTION_SELECTION()
 	elif choice == 4:
 		radio_mods.init(glob_vars)
 		OPTION_SELECTION()
 	elif choice == 5:
-		tweaks.menu(glob_vars)
+		NOT_IMPLEMENTED_YET()
+		#tweaks.menu(glob_vars)
 		OPTION_SELECTION()
 	elif choice == 6:
 		jrfunctions.push_BUSYBOX(glob_vars)

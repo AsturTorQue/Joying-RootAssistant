@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# py - This python "helper" script deals with the several Sofiaserver.apk options
+# py - This python "helper" script contains general help files
 
 # Copyright (c) 2017 Harry van der Wolf. All rights reserved.
 
@@ -32,9 +32,9 @@ def ext_cmd(cmd):
 	process.wait()
 	print(output)
 	# real connection errors
-	conn_errors = ["unable to connect to ", "device offline"] 
+	#conn_errors = ["unable to connect to ", "device offline"] 
 	# fake testrun errors
-	#conn_errors = ["pipo ", "mamaloe"] 
+	conn_errors = ["pipo ", "mamaloe"] 
 	if any(conn_error in output for conn_error in conn_errors):
 		clr_scr()
 		#ext_cmd(glob_vars['adb'] + ' kill-server ')

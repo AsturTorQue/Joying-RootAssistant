@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# sofiaserver.py - This python "helper" script deals with the several Sofiaserver.apk options
+# bluetooth.py - This python "helper" script deals with the several bluetooth mods and improvements
 
 # Copyright (c) 2017 Harry van der Wolf. All rights reserved.
 
@@ -22,7 +22,7 @@ import jrfunctions
 ###################################################
 # Variables for this script
 SCRIPT_VERSION="v0.1 16 April 2017"
-SCRIPT_NAME="Joying SofiaServer Mods subscript, version " + SCRIPT_VERSION
+SCRIPT_NAME="Joying Bluetooth Mods subscript, version " + SCRIPT_VERSION
 
 ###################################################
 ###################################################
@@ -44,20 +44,16 @@ def MENU(glob_vars):
 	print("  " + SCRIPT_NAME)
 	print(87 * "=")
 	print("  Select an Option :")
-	print("\n   1 . Install full NoKill/Steering Wheel mod")
-	print("\n\n   2 . Install NoKill; No steering wheel mod")
-	print("\n\n   3 . Install NoKill with only SRC hardcoded in")
-	print("\n\n       NOTE: all versions 1, 2 and 3 include the Nav_app sound")
-	print("           fix, USB output fix, Google Voice feedback fix")
-	print("\n\n   4 . Update or install launcher.sh")
-	print("\n\n   5 . Install extra en-US files for Google Voice")
-	print("\n\n   6 . Exit this radio mods subscript")
+	print("\n   1 . Install BlueBalls.apk: enables bluetooth options in settings")
+	print("\n\n   2 . Install BluetoothTetering: BT tetering between your unit and phone")
+	print("\n\n   3 . Install modded Bluetooth apk: enables coupling to all BT devices")
+	print("\n\n   6 . Exit this Bluetooth mods subscript")
 	print(87 * "=")
 	choice = jrfunctions.input_cmd("")
 	### Convert string to int type ##
 	choice = int(choice)
 	if choice == 1:
-		INSTALL_MOD(glob_vars, 'FULL')
+		INSTALL_MOD(glob_vars, 'BlueBalls')
 	elif choice == 2:
 		INSTALL_MOD(glob_vars, 'NoKillOnly')
 	elif choice == 3:
