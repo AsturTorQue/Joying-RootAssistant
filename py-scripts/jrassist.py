@@ -3,7 +3,7 @@
 
 # Version 1.0, 20170415, Harry van der Wolf
 
-import os, sys, platform, subprocess, time
+import os, sys, platform, subprocess, shutil, time
 
 # python helper scripts
 import jrfunctions # General functions and tweaks
@@ -35,14 +35,14 @@ realfile_dir  = os.path.dirname(os.path.abspath(__file__))
 #glob_vars['BASE_DIR'] = os.path.join(realfile_dir, "..")
 glob_vars['BASE_DIR'] = os.path.abspath(os.path.join(__file__ ,"../.."))
 glob_vars['RESOURCES'] = os.path.join(glob_vars['BASE_DIR'],"resources")
+glob_vars['TMP_DIR'] = os.path.join(glob_vars['BASE_DIR'],"tmp")
+glob_vars['BASE_REPO_URL'] = "https://github.com/hvdwolf/Joying-RootAssistant/blob/python_branch/"
+
 if (OSplatform == "Windows") | (OSplatform == "nt"):
 	glob_vars['adb'] = os.path.join(glob_vars['BASE_DIR'],"win-adb", "adb.exe")
 else:
 	glob_vars['adb'] = "adb"
-#print(glob_vars['RESOURCES']
-#print(glob_vars['adb']
-#import time
-#time.sleep(5)
+
 
 # Set variable that subscripts can check
 glob_vars['MAINSCRIPT'] = "YES"
@@ -148,6 +148,8 @@ def  CLOSE_TOOL():
 	print("          !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n")
 	print(87 * "=")
 	print("\n\n")
+	# remove tmp folder recursively
+	shutil.rmtree( glob_vars['TMP_DIR'] )
 	sys.exit()
 
 def NOT_IMPLEMENTED_YET():
@@ -161,6 +163,7 @@ def NOT_IMPLEMENTED_YET():
 
 ###################################################
 ###################################################
+# This is the "main" part
 # Set terminal size
 sys.stdout.write("\x1b[8;{rows};{cols}t".format(rows=32, cols=100))
 
@@ -171,5 +174,10 @@ if len(sys.argv) < 2:
 	sys.exit()
 else:
 	IP_ADDRESS = sys.argv[1]
+
+# Make tmp folder if it doesn't exist
+if not os.path.isdir(glob_vars['TMP_DIR']):
+	os.makedirs(glob_vars['TMP_DIR'])
+
 
 JRASSIST_ACCEPT()

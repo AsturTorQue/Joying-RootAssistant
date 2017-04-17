@@ -49,7 +49,8 @@ def MENU(glob_vars):
 	print("\n\n   2 . Install the RED_WHITE version")
 	print("\n\n   3 . Install the RED version")
 	print("\n\n   4 . Install the ORANGE version")
-	print("\n\n   5 . Exit this radio mods subscript")
+	print("\n\n   4 . Install the GREEN version")
+	print("\n\n   6 . Exit this radio mods subscript")
 	print(87 * "=")
 	choice = jrfunctions.input_cmd("")
 	### Convert string to int type ##
@@ -63,6 +64,8 @@ def MENU(glob_vars):
 	elif choice == 4:
 		INSTALL_MOD(glob_vars, 'ORANGE')
 	elif choice == 5:
+		INSTALL_MOD(glob_vars, 'GREEN')
+	elif choice == 6:
 		return
 	else:
 		MENU(glob_vars)

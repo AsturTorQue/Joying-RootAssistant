@@ -1,0 +1,7 @@
+build/
+dist/
+tmp/
+*.pyc
+py-scripts/*.pyc
+py-scripts/test*
+
