@@ -1,10 +1,12 @@
 # Joying-RootAssistant
 
+**WARNING: If you got here, fine! But do not use this yet. I'm still building and trying/testing from linux and windows. Some parts are already functional. Some not**
+
 WARNING: Only for joying Intel 3GR head units.
 
 Note: Windows users can better download the zip. For some reason the adb.exe gives and "access refused" error when downloading the repository using git.
 
-Currently this repository only contains the SuperSU install scripts, the busybox upgrade scripts and 3 modded versions of the radio app. 
+Currently this repository only contains the SuperSU install scripts, the busybox upgrade scripts and 3 modded versions of the radio app.
 
 ## SuperSU_for_Joying_Intel
 The Joying units are rooted but miss a user-friendly Superuser apk that deals with the SELinux policies on your unit.
