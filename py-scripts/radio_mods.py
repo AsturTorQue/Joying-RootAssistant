@@ -49,7 +49,7 @@ def MENU(glob_vars):
 	print("\n\n   2 . Install the RED_WHITE version")
 	print("\n\n   3 . Install the RED version")
 	print("\n\n   4 . Install the ORANGE version")
-	print("\n\n   4 . Install the GREEN version")
+	print("\n\n   5 . Install the GREEN version")
 	print("\n\n   6 . Exit this radio mods subscript")
 	print(87 * "=")
 	choice = jrfunctions.input_cmd("")
