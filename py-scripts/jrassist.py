@@ -82,9 +82,11 @@ def JRASSIST_ACCEPT(glob_vars):
 			jrfunctions.adb_cmd(glob_vars, ' connect ' + IP_ADDRESS)
 		else:
 			jrfunctions.clr_scr()
-			print("\n\nDRY_RUN is set to YES. This is for testing\nNo connection will be made to the head unit!\n\n")
+			print("\n\n        DRY_RUN is set to YES. This is for testing.")
+			print("        No connection will be made to the head unit!\n")
+			print("        You will see errors like \"error: device not found\"\n\n")
 			choice = jrfunctions.input_cmd("Press enter to continue\n")
-		OPTION_SELECTION()
+		OPTION_SELECTION(glob_vars)
 	else:
 		# we always want to use our close tool to exit the toolKIT
 		# so we remap commonly used commands for exiting
@@ -94,7 +96,7 @@ def JRASSIST_ACCEPT(glob_vars):
 		#	JRASSIST_ACCEPT()
 		CLOSE_TOOL()
 
-def OPTION_SELECTION():
+def OPTION_SELECTION(glob_vars):
 	#clear
 	# set window title specific to this section
 	title = glob_vars['PROGRAM_NAME']
@@ -120,33 +122,33 @@ def OPTION_SELECTION():
 	choice = int(choice)
 	if choice == 1:
 		sysoptions.init(glob_vars)
-		OPTION_SELECTION()
+		OPTION_SELECTION(glob_vars)
 	elif choice == 2:
 		sofiaserver.init(glob_vars)
 		#NOT_IMPLEMENTED_YET()
-		OPTION_SELECTION()
+		OPTION_SELECTION(glob_vars)
 	elif choice == 3:
 		bluetooth.init(glob_vars)
-		OPTION_SELECTION()
+		OPTION_SELECTION(glob_vars)
 	elif choice == 4:
 		radio_mods.init(glob_vars)
-		OPTION_SELECTION()
+		OPTION_SELECTION(glob_vars)
 	elif choice == 5:
 		NOT_IMPLEMENTED_YET()
 		#tweaks.menu(glob_vars)
-		OPTION_SELECTION()
+		OPTION_SELECTION(glob_vars)
 	elif choice == 6:
 		jrfunctions.push_BUSYBOX(glob_vars)
-		OPTION_SELECTION()
+		OPTION_SELECTION(glob_vars)
 	elif choice == 7:
 		jrfunctions.clr_scr()
 		print(credits.CREDITS)
 		jrfunctions.input_cmd("\n\nPress enter to return to the main menu\n\n")
-		OPTION_SELECTION()
+		OPTION_SELECTION(glob_vars)
 	elif choice == 8:
 		CLOSE_TOOL()
 	else:
-		OPTION_SELECTION()
+		OPTION_SELECTION(glob_vars)
 ###################################################
 def  CLOSE_TOOL():
 	jrfunctions.clr_scr()
@@ -203,7 +205,7 @@ if __name__ == '__main__' :
 		IP_ADDRESS = sys.argv[1]
 
 	# check if DRY_RUN has been specified. Overrules script value
-	if len(sys.argv) >= 2:
+	if len(sys.argv) > 2:
 		if sys.argv[2] == "DRY_RUN":
 			glob_vars['DRY_RUN'] = "YES"
 
