@@ -214,7 +214,8 @@ if __name__ == '__main__' :
 		os.makedirs(glob_vars['TMP_DIR'])
 
 	# Check if adb is available on linux/*BSD/Mac OS/X
-	if not jrfunctions.check_for_program('adb'):
-		TOOL_MISSING('adb')
+	if (OSplatform != "Windows") & (OSplatform != "nt"):
+		if not jrfunctions.check_for_program('adb'):
+			TOOL_MISSING('adb')
 
 	JRASSIST_ACCEPT(glob_vars)
