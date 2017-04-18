@@ -79,6 +79,20 @@ def input_cmd(Message):
 
 	return choice
 
+
+# download function
+def resource_download( glob_vars, local_path, file_url ):
+	print("\nDownloading " + file_url.rsplit('/', 1)[-1])
+	loc_file = urlopen( map_url )
+	with open(os.path.join(glob_vars['BASE_DIR'], "resources", local_path),'wb') as output:
+		output.write(loc_file.read())
+
+
+
+###################################################
+###################################################
+
+
 def push_BUSYBOX(glob_vars):
 	clr_scr() 
 	print("\n\n    Updating your busybox.\n\n")
