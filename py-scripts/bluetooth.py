@@ -47,7 +47,7 @@ def MENU(glob_vars):
 	print("\n   1 . Install BlueBalls.apk: enables bluetooth options in settings")
 	print("\n\n   2 . Install BluetoothTetering: BT tetering between your unit and phone")
 	print("\n\n   3 . Install modded Bluetooth apk: enables coupling to all BT devices")
-	print("\n\n   6 . Exit this Bluetooth mods subscript")
+	print("\n\n   4 . Exit this Bluetooth mods subscript")
 	print(87 * "=")
 	choice = jrfunctions.input_cmd("")
 	### Convert string to int type ##
@@ -55,14 +55,10 @@ def MENU(glob_vars):
 	if choice == 1:
 		INSTALL_MOD(glob_vars, 'BlueBalls')
 	elif choice == 2:
-		INSTALL_MOD(glob_vars, 'NoKillOnly')
+		INSTALL_MOD(glob_vars, 'BTTethering')
 	elif choice == 3:
-		INSTALL_MOD(glob_vars, 'SRCOnly')
+		INSTALL_MOD(glob_vars, 'modBT')
 	elif choice == 4:
-		INSTALL_MOD(glob_vars, 'LAUNCHER')
-	elif choice == 5:
-		INSTALL_MOD(glob_vars, 'extra-en-US')
-	elif choice == 6:
 		return
 	else:
 		MENU(glob_vars)

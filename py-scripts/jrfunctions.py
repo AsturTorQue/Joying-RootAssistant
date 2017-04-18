@@ -18,6 +18,21 @@
 
 import os, platform, sys, subprocess
 
+###################################################
+###################################################
+def is_executable(fpath):
+	return os.path.isfile(fpath) and os.access(fpath, os.X_OK)
+
+def check_for_program(program):
+	exists = False
+	for path in os.environ["PATH"].split(os.pathsep):
+		path_plus_program = os.path.join(path, program)
+		if is_executable(path_plus_program):
+			#print "program " + program + " found"
+			exists = True
+	return exists
+
+
 def clr_scr():
 	OSplatform = platform.system()
 	if (OSplatform == "Windows") | (OSplatform == "nt"):
@@ -26,7 +41,8 @@ def clr_scr():
 		os.system('clear')
 
 
-def ext_cmd(cmd):
+def adb_cmd(glob_vars, cmd):
+	cmd = glob_vars['adb'] + ' ' + cmd
 	process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
 	(output, err) = process.communicate()
 	process.wait()
@@ -37,7 +53,7 @@ def ext_cmd(cmd):
 	#conn_errors = ["pipo ", "mamaloe"] 
 	if any(conn_error in output for conn_error in conn_errors):
 		clr_scr()
-		#ext_cmd(glob_vars['adb'] + ' kill-server ')
+		#adb_cmd(glob_vars['adb'] + ' kill-server ')
 		print("\n\n          !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 		print("          !!!!!                                                         !!!!!")
 		print("          !!!!!      I CAN NOT CONNECT TO YOUR JOYING HEAD UNIT         !!!!!")
@@ -68,12 +84,12 @@ def push_BUSYBOX(glob_vars):
 	clr_scr() 
 	print("\n\n    Updating your busybox.\n\n")
 	#time.sleep(5)
-	ext_cmd(glob_vars['adb'] + ' push ' + os.path.join(glob_vars['BASE_DIR'], "busybox-X86", "busybox") + ' /sdcard/')
-	ext_cmd(glob_vars['adb'] + ' shell "su -c mount -o remount,rw /system"')
-	ext_cmd(glob_vars['adb'] + ' shell "su -c cp /system/bin/busybox /system/bin/busybox.org"')
-	ext_cmd(glob_vars['adb'] + ' shell "su -c cp /sdcard/busybox /system/bin/busybox"')
-	ext_cmd(glob_vars['adb'] + ' shell "su -c chmod 0755 /system/bin/busybox"')
-	ext_cmd(glob_vars['adb'] + ' shell "su -c mount -o remount,ro /system"')
-	ext_cmd(glob_vars['adb'] + ' shell "su -c ls -l /system/bin/busy*"')
+	adb_cmd(glob_vars, ' push ' + os.path.join(glob_vars['BASE_DIR'], "busybox-X86", "busybox") + ' /sdcard/')
+	adb_cmd(glob_vars, ' shell "su -c mount -o remount,rw /system"')
+	adb_cmd(glob_vars, ' shell "su -c cp /system/bin/busybox /system/bin/busybox.org"')
+	adb_cmd(glob_vars, ' shell "su -c cp /sdcard/busybox /system/bin/busybox"')
+	adb_cmd(glob_vars, ' shell "su -c chmod 0755 /system/bin/busybox"')
+	adb_cmd(glob_vars, ' shell "su -c mount -o remount,ro /system"')
+	adb_cmd(glob_vars, ' shell "su -c ls -l /system/bin/busy*"')
 	input_cmd("\n\nPress enter to return to main menu\n\n")
 		

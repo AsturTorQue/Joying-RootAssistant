@@ -44,11 +44,15 @@ else:
 	glob_vars['adb'] = "adb"
 
 
-# Set variable that subscripts can check
+# Set variable that subscripts can check. We don't want users to start a subscript
 glob_vars['MAINSCRIPT'] = "YES"
+# Set variable for dry_run. This is for test purposes and the scripts
+# will do everything except connecting to the head unit
+glob_vars['DRY_RUN'] = "NO"
+
 ###################################################
 ###################################################
-def JRASSIST_ACCEPT():
+def JRASSIST_ACCEPT(glob_vars):
 	# set window title specific to this section
 	title = glob_vars['PROGRAM_NAME'] + " disclaimer"
 	jrfunctions.clr_scr()
@@ -71,10 +75,15 @@ def JRASSIST_ACCEPT():
 	choice = jrfunctions.input_cmd("\n")
 	# the only accepted answer to continue
 	if choice == "accept":
-		jrfunctions.ext_cmd(glob_vars['adb'] + ' kill-server ')
-		jrfunctions.ext_cmd(glob_vars['adb'] + ' connect ' + IP_ADDRESS)
-		jrfunctions.ext_cmd(glob_vars['adb'] + ' root')
-		jrfunctions.ext_cmd(glob_vars['adb'] + ' connect ' + IP_ADDRESS)
+		if glob_vars['DRY_RUN'] == "NO":
+			jrfunctions.adb_cmd(glob_vars, ' kill-server ')
+			jrfunctions.adb_cmd(glob_vars, ' connect ' + IP_ADDRESS)
+			jrfunctions.adb_cmd(glob_vars, ' root')
+			jrfunctions.adb_cmd(glob_vars, ' connect ' + IP_ADDRESS)
+		else:
+			jrfunctions.clr_scr()
+			print("\n\nDRY_RUN is set to YES. This is for testing\nNo connection will be made to the head unit!\n\n")
+			choice = jrfunctions.input_cmd("Press enter to continue\n")
 		OPTION_SELECTION()
 	else:
 		# we always want to use our close tool to exit the toolKIT
@@ -167,26 +176,43 @@ def NOT_IMPLEMENTED_YET():
 	print("          !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n")
 	jrfunctions.input_cmd("Press enter to return to the main menu\n\n")
 
+def TOOL_MISSING(tool):
+	jrfunctions.clr_scr()
+	print("\n\n          !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+	print("\n\n             " + tool + " is missing! Please install first!")
+	print("\n\n          !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n")
+	jrfunctions.input_cmd("Press enter to exit this script\n\n")
+	sys.exit()
+
 ###################################################
 ###################################################
 # This is the "main" part
-# Set terminal size
-if (OSplatform == "Windows") | (OSplatform == "nt"):
-	os.system("mode con:cols=100 lines=32")
-else:
-	sys.stdout.write("\x1b[8;{rows};{cols}t".format(rows=32, cols=100))
+if __name__ == '__main__' :
+	# Set terminal size
+	if (OSplatform == "Windows") | (OSplatform == "nt"):
+		os.system("mode con:cols=100 lines=32")
+	else:
+		sys.stdout.write("\x1b[8;{rows};{cols}t".format(rows=32, cols=100))
 
-#check for ip-address
-if len(sys.argv) < 2:
-	print('\n\n  No ip-address given. I need the ip-address. Restart the script with "./jrassist.sh ip-address".')
-	print('\n  like ./jrassist.sh 192.168.178.50\n\n')
-	sys.exit()
-else:
-	IP_ADDRESS = sys.argv[1]
+	#check for ip-address
+	if len(sys.argv) < 2:
+		print('\n\n  No ip-address given. I need the ip-address. Restart the script with "./jrassist.sh ip-address".')
+		print('\n  like ./jrassist.sh 192.168.178.50\n\n')
+		sys.exit()
+	else:
+		IP_ADDRESS = sys.argv[1]
 
-# Make tmp folder if it doesn't exist
-if not os.path.isdir(glob_vars['TMP_DIR']):
-	os.makedirs(glob_vars['TMP_DIR'])
+	# check if DRY_RUN has been specified. Overrules script value
+	if len(sys.argv) >= 2:
+		if sys.argv[2] == "DRY_RUN":
+			glob_vars['DRY_RUN'] = "YES"
 
+	# Make tmp folder if it doesn't exist
+	if not os.path.isdir(glob_vars['TMP_DIR']):
+		os.makedirs(glob_vars['TMP_DIR'])
 
-JRASSIST_ACCEPT()
+	# Check if adb is available on linux/*BSD/Mac OS/X
+	if not jrfunctions.check_for_program('adb'):
+		TOOL_MISSING('adb')
+
+	JRASSIST_ACCEPT(glob_vars)

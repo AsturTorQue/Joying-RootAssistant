@@ -7,5 +7,5 @@ then
 	exit
 fi
 cd py-scripts
-./jrassist.py $1
+./jrassist.py $@
 

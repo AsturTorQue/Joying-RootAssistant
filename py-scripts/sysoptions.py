@@ -59,33 +59,33 @@ def MENU(glob_vars):
 def ROOT_IT(glob_vars):
 	RESOURCES = os.path.join(glob_vars['BASE_DIR'], "SuperSU_for_Joying_Intel","resources")
 	# Make the partitions read-writable
-	jrfunctions.ext_cmd(glob_vars['adb'] + ' shell mount -o rw,remount /system')
-	jrfunctions.ext_cmd(glob_vars['adb'] + ' shell mount -o rw,remount /system /system')
-	jrfunctions.ext_cmd(glob_vars['adb'] + ' shell mount -o rw,remount /')
-	jrfunctions.ext_cmd(glob_vars['adb'] + ' shell mount -o rw,remount / /')
+	jrfunctions.adb_cmd(glob_vars, ' shell mount -o rw,remount /system')
+	jrfunctions.adb_cmd(glob_vars, ' shell mount -o rw,remount /system /system')
+	jrfunctions.adb_cmd(glob_vars, ' shell mount -o rw,remount /')
+	jrfunctions.adb_cmd(glob_vars, ' shell mount -o rw,remount / /')
 
 	# Make some temporary folders
-	jrfunctions.ext_cmd(glob_vars['adb'] + ' shell "mkdir /tmp"')
-	jrfunctions.ext_cmd(glob_vars['adb'] + ' shell "mkdir /tmp/supersu"')
+	jrfunctions.adb_cmd(glob_vars, ' shell "mkdir /tmp"')
+	jrfunctions.adb_cmd(glob_vars, ' shell "mkdir /tmp/supersu"')
 
 	# Do the copying
 	#print("\n' + RESOURCES + '\n\n"
-	jrfunctions.ext_cmd(glob_vars['adb'] + ' push ' + os.path.join(RESOURCES, "chattr.pie") + ' /tmp/supersu/')
-	jrfunctions.ext_cmd(glob_vars['adb'] + ' push ' + os.path.join(RESOURCES, "install.sh") + ' /tmp/supersu/')
-	jrfunctions.ext_cmd(glob_vars['adb'] + ' push ' + os.path.join(RESOURCES, "install-recovery.sh") + ' /tmp/supersu/')
-	jrfunctions.ext_cmd(glob_vars['adb'] + ' push ' + os.path.join(RESOURCES, "libsupol.so") + ' /tmp/supersu/')
-	jrfunctions.ext_cmd(glob_vars['adb'] + ' push ' + os.path.join(RESOURCES, "su.pie") + ' /tmp/supersu/')
-	jrfunctions.ext_cmd(glob_vars['adb'] + ' push ' + os.path.join(RESOURCES, "Superuser.apk") + ' /tmp/supersu/')
-	jrfunctions.ext_cmd(glob_vars['adb'] + ' push ' + os.path.join(RESOURCES, "supolicy") + ' /tmp/supersu/')
+	jrfunctions.adb_cmd(glob_vars, ' push ' + os.path.join(RESOURCES, "chattr.pie") + ' /tmp/supersu/')
+	jrfunctions.adb_cmd(glob_vars, ' push ' + os.path.join(RESOURCES, "install.sh") + ' /tmp/supersu/')
+	jrfunctions.adb_cmd(glob_vars, ' push ' + os.path.join(RESOURCES, "install-recovery.sh") + ' /tmp/supersu/')
+	jrfunctions.adb_cmd(glob_vars, ' push ' + os.path.join(RESOURCES, "libsupol.so") + ' /tmp/supersu/')
+	jrfunctions.adb_cmd(glob_vars, ' push ' + os.path.join(RESOURCES, "su.pie") + ' /tmp/supersu/')
+	jrfunctions.adb_cmd(glob_vars, ' push ' + os.path.join(RESOURCES, "Superuser.apk") + ' /tmp/supersu/')
+	jrfunctions.adb_cmd(glob_vars, ' push ' + os.path.join(RESOURCES, "supolicy") + ' /tmp/supersu/')
 
 	# Do the actual installation
-	jrfunctions.ext_cmd(glob_vars['adb'] + ' shell chmod 0755 /tmp/supersu/install.sh')
-	jrfunctions.ext_cmd(glob_vars['adb'] + ' shell "cd /tmp/supersu/ && sh install.sh"')
+	jrfunctions.adb_cmd(glob_vars, ' shell chmod 0755 /tmp/supersu/install.sh')
+	jrfunctions.adb_cmd(glob_vars, ' shell "cd /tmp/supersu/ && sh install.sh"')
 
 	# Clean up
-	jrfunctions.ext_cmd(glob_vars['adb'] + ' shell rm -rf /tmp/supersu')
-	jrfunctions.ext_cmd(glob_vars['adb'] + ' shell mount -o ro,remount /system')
-	jrfunctions.ext_cmd(glob_vars['adb'] + ' shell mount -o ro,remount /')
+	jrfunctions.adb_cmd(glob_vars, ' shell rm -rf /tmp/supersu')
+	jrfunctions.adb_cmd(glob_vars, ' shell mount -o ro,remount /system')
+	jrfunctions.adb_cmd(glob_vars, ' shell mount -o ro,remount /')
 	#read -n 1 -s -p "Press any key to exit this script and return to the main script"
 	jrfunctions.input_cmd("\n\nPress enter to exit this script and return to the main script\n\n")
 
