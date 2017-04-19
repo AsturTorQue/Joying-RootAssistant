@@ -18,6 +18,13 @@
 
 import os, platform, sys, subprocess
 
+if sys.version_info<(3,0,0):
+	# Fall back to Python 2's urllib2
+	from urllib2 import urlopen
+else:
+	# For Python 3.0 and later
+	from urllib.request import urlopen
+
 ###################################################
 ###################################################
 def is_executable(fpath):
@@ -81,10 +88,11 @@ def input_cmd(Message):
 
 
 # download function
-def resource_download( glob_vars, local_path, file_url ):
-	print("\nDownloading " + file_url.rsplit('/', 1)[-1])
-	loc_file = urlopen( map_url )
-	with open(os.path.join(glob_vars['BASE_DIR'], "resources", local_path),'wb') as output:
+def resource_download( glob_vars, resourcePath, file_url ):
+	dfile = file_url.rsplit('/', 1)[-1]
+	print("\n          Downloading " + dfile)
+	loc_file = urlopen( file_url )
+	with open(os.path.join(glob_vars['TMP_DIR'],resourcePath, dfile),'wb') as output:
 		output.write(loc_file.read())
 
 

@@ -190,6 +190,7 @@ def TOOL_MISSING(tool):
 ###################################################
 # This is the "main" part
 if __name__ == '__main__' :
+	jrfunctions.clr_scr()
 	# Set terminal size
 	if (OSplatform == "Windows") | (OSplatform == "nt"):
 		os.system("mode con:cols=100 lines=32")
